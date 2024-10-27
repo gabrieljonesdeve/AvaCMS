@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script>
+        function loadHTML(elementId, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data);
+        }
+    </script>
+    <script>loadHTML('header', 'conf/header.html');</script>
+    <title>Home - Gabby CMS</title>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <h1>Benvenuto su Gabby CMS</h1>
+        <h2>Ultimi articoli</h2>
+        <ul id="post-list"></ul>
+    </main>
+    <div id="footer"></div>
+    <script>
+        loadHTML('footer', 'conf/footer.html');
+
+        const posts = [
+            'blog/post/nome-post-1.html',
+            'blog/post/nome-post-2.html',
+            'blog/post/nome-post-3.html'
+            // Aggiungi qui gli altri post
+        ];
+
+        posts.forEach(post => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${post}">${post.replace('blog/post/', '').replace('.html', '')}</a>`;
+            document.getElementById('post-list').appendChild(li);
+        });
+    </script>
+</body>
+</html>
